@@ -7,6 +7,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+#questions
 qa_pairs = {
     "What is Python?": "Python is a high-level programming language known for its simplicity and readability.",
     "What is JavaScript?": "JavaScript is a scripting language commonly used for web development.",
