@@ -1,2 +1,5 @@
 # solution_cb
-#Erics Update
+
+**How to run**
+#Run pip<version> install -r requirements.txt
+#start the application 
