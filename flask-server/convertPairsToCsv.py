@@ -1,0 +1,50 @@
+import csv
+
+
+qa_pairs = {
+    "Service Description" : "Service Name",
+    "Enables clients to view account balances / transaction information in both a high-level summary and detailed formats. This product provides a package of reprots through the default Cash Reports user entitlement - Updated": "Access Cash (Transaction) Reporting and Rules Mapping",
+    "A spreadsheet plug-in that integrates with J.P. Morgan Access and provides a single view of a client's account information across their banking relationship. Installed through Microsoft Excel, a client is able to create a custom worksheet that can be refreshed with data from JPM or other banking providers' accounts.": "Access Insight Reporting (Excel Plug-in)",
+    "Enables the client to view cash / investment balances associated with a DDA, Physical Cash Concentration structure, and reports (Lee: CFI, CFV, Trovata, etc.)": "Access Liquidity Solutions - Visibility",
+    "Delivery of cash (transaction) reporting via API": "Cash Reporting API",
+    "(CDR = Current Day Reporting). Transmits files directly to the client's financial systems, automating information reporting delivery.": "H2H Reporting (CDR, current-day reporting)",
+    "(PDR = Prior Day Reporting). Transmits files directly to the client's financial systems automating information reporting delivery.": "H2H Reporting (PDR, prior-day reporting)",
+    "System that allows clients to view aggregated account information across their entire portfolio and conduct in-dept risk analysis (JPMorgan Asset Management product)": "Morgan Money - Reporting (Referral to JPM Asset Management",
+    "Tracks the movement of US physical cash concentration transfers throughout the day. The running net-total reflects the intercompany position.": "Intercompany Reporting (US)",
+    "Provides full visibility of all J.P. Morgan accounts globally as well as accounts with third-party banks who send reporting data to JPM.": "Multi-Bank Reporting",
+    "JPM FinTech partnership. Multi-bank cash management platform that helps clients with cash forecasting, cash flow analysis, and cash reporting. Available as a paid add-on to J.P. Morgan Access.": "Trovata",
+    "Provides a monthly summary of investments, cash concentration, and pooling on ECD and International DDAs.": "Access Liquidity Statements",
+    "Structure information service which applies when the client requests Cash Concentration, Multibank (Third Party) Cash Concentration, Intercompany Loans & Reporting, Notional Pooling, and Group Liquidity Management Acccount.": "Access Liquidity Solutions - Structures",
+    "ADT-ULID (Unique Location Indentifiers) Reporting is a cash concentration report that enhances reconciliation of deposit detail through customized transaction reporting. It displays all prior-day transactions in the concentration structure in a single statement at the master account level. Transactions are sub-totaled and organized according to ULID information available.": "ADT ULID Reporting",
+    "Enables automatic consolidation of cash positions across a client's accounts located at the same JPM branch, different JPM branches, or at a 3rd party bank (also consider selling a Multibank Sweep, in addition, for a structure including a 3rd Part Bank). Provides clients with enhanced efficiency, increased visibility, and more control over liquidity.": "Physical Cash Concentration (US)",
+    "Combining one DDA with a virtual account sub-ledger; VAM enables the differentiation of cash activity within a single account. Clients are able to create virtual account structures that mirror their organization improving cash visibility and reducing reliance on physical accounts.": "Virtual Account Management (VAM)",
+    "Web-based solution for concentrating funds deposited at remote locations.": "ACH Cash Concentration",
+    "An instruction sent from JPM to initiate a credit request and draw funds from a client's third party bank account into a JPM account.": "Drawdown (US) - Inbound Funds",
+    "An instruction sent from JPM to send funds from a client's JPM account to a bank account at a separate third-party bank.": "Drawdown (US) - Outbound Funds",
+    "Automatically moves balances from an account in one bank to an account in another bank. This product automates the movement of cash between client-owned accounts at JPM and third-party banks via SWIFT messaging.": "Multi-Bank Sweep",
+    "Standing Order Funds Transfer Initiation - Allows clients to initiate routine, regular, and automated inbound fund transactions that do not require client input.": "SOFTI (Standing Order Funds Transfer Instructions) - Collections",
+    "Standing Order Funds Transfer Initiation - Allows clients to initiate routine, regular, and automated outbound fund transactions that do not require client input.": "SOFTI (Standing Order Funds Transfer Instructions) - Disbursements",
+    "Enables clients to use credits earned (ECA) on local US DDA balances to offset their US bank fees. Offers clients a soft dollar credit.": "DDA with ECR (US)",
+    "Provides interest payments in exchange for balances. Interest accrues on a daily basis and is paid monthly.": "DDA with Interest (US)",
+    "Provides the benefits of both interest and ECR accounts, consolidated into a single account that's easier to manage. Balances up to a predetermined threshold (peg) earn credit (ECA) at a manged ECR to offset fees. Balances over the peg balance earn hard dollar interest. Interest accrues daily and is paid monthly. ECR/ECA is calculated and applied monthly.": "Hybrid DDA with ECR and Interest (US)",
+    "Provides accurate disbursement totals early each business day to gain control over idle balances, eliminate overdrafts and automate funding transfers.": "Controlled Disbursement Account (CDA)",
+    "An automated product that links a client's DDA to a single entity committed revolving line of credit and an investment account, if desired.": "Loan Sweep",
+    "Enables J.P. Morgan cash and credit clients to initate batch, cross-border, cross-currency transactions utilizing the low value clearing systems within the country of the pay currency. Clients can initiate payments via GMP from 11 debit locations, holding an account in 50+ currencies (location dependent). Sales should collaborate with their TS FX PSS early into the process to assess client compatibility with GMP.": "Global Mass Pay",
+    "Wire payments to international suppliers / vendors in local currency (FX). Eliminates need for client to set-up international accounts or hold local currency for international payments.": "TS FX Wires",
+    "An interest-bearing account designed for operation balances (used primarily outside the U.S.). The LMA pays increasing interest based on the stability of thea ccount balance over time.": "LMA (Liquidity Management Account, US /Int'l)",
+    "Term deposit where a fixed amount of cash is held for a specified period of time at a fixed rate.": "Certificate of Deposit (CD)",
+    "Clients can use this interest-bearing solution to set aside a reserve cash to fund periodic payments such as capital improvements, lease payments, etc. or simply to provide a liquidity cushion to accommodate a sudden need for cash. Note that regulation capping withdrawls at 6 per month have been removed.": "Money Market Deposit Account (MMDA)",
+    "Automatically transfers funds at the close of each business day and then returns them to the DDA when the markets open the next business day. Provides a convenient service for overnight investment of surplus funds.": "MMF Sweep (EOD)",
+    "Automatically invests via sweep, at different times throughout the day an hour before the fund close time. Clients set a target amount to maintain at all times in the DDA. The automated sweep invests the excess funds above the pre-established target into a MMMF, and redeems funds if the account balance falls below the target. Funds remain invested otherwise.": "MMF Sweep (intra-day)",
+    "Pooled investments comprised of short-term money market instruments, generally with maturities of 13 months or less. MMFs are required to maintain a diversified portfolio of holdings (regulated by the Securities Exchange COmmission (SEC)) and are therefore considered stable, low-risk investments.": "Money Market Mutual Funds",
+    "JP Morgan Asset Management's enhanced trading and analytics platform. This multi-currency, open architecture trading and risk management system allows clients to invest when, where, and how they want.": "Morgan Money - Self-directed MMF Investments (Referral to JPM Asset Management)",
+    "No Description Available.": "Referral to JPMorgan Advisors",
+    "Investment Initiation via ALS enables the client to invest directly in MMFs offered by JPM as well as leading third party providers.": "Self-directed MMF Investments thru ALS - Investment Initiation",
+    "Provides comprehensive FX toolkit that enables integrated trade execution, confirmation, and settlement, in single interface. Allows multiple users to manage FX risk and payments securely, 24 hours a day. Includes spots, forwards, swaps, NFDs, and window forwards.": "J.P. Morgan Access FX Center",
+    "No Description Available.": "Referral to FX Marketers (CIB)",
+    "No Description Available.": "Merchant Services Access FX (Referral to Merchant Services)",
+}
+
+with open("myCsvfile.csv", "w", newline="") as f:
+    w = csv.writer(f)
+    w.writerows(qa_pairs.items())
