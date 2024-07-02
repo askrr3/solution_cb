@@ -1,0 +1,22 @@
+[
+    {
+        "service": "RideSharing",
+        "description": "A service to book rides with drivers in your area"
+    },
+    {
+        "service": "FoodDelivery",
+        "description": "A service to order food from various restaurants and have it delivered to your door"
+    },
+    {
+        "service": "HouseCleaning",
+        "description": "A service to schedule and book house cleaning professionals"
+    },
+    {
+        "service": "PetSitting",
+        "description": "A service to find and book pet sitters for your pets"
+    },
+    {
+        "service": "FitnessTraining",
+        "description": "A service to book personal fitness training sessions with professional trainers"
+    }
+]
